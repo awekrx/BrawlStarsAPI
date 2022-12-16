@@ -1,0 +1,29 @@
+{
+    "name": "brawlstars-api-nodejs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alladon/brawlstars-api-nodejs.git"
+    },
+    "keywords": [
+        "brawlstars",
+        "brawlstars-api"
+    ],
+    "author": "alladon",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.2.1"
+    },
+    "bugs": {
+        "url": "https://github.com/alladon/brawlstars-api-nodejs/issues"
+    },
+    "homepage": "https://github.com/alladon/brawlstars-api-nodejs/#readme",
+    "files": [
+        "lib/**/*"
+    ]
+}
