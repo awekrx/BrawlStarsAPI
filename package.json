@@ -1,7 +1,7 @@
 {
     "name": "brawlstars-api-nodejs",
     "version": "1.0.0",
-    "description": "",
+    "description": "brawlstars-api-nodejs is a NodeJS library for that is a client for the Brawl Stars API.",
     "main": "index.js",
     "scripts": {
         "build": "tsc"
