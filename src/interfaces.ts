@@ -281,7 +281,7 @@ export type TClubType = "open" | "inviteOnly" | "closed" | "unknown";
 interface IBattleBrawler {
     id: number;
     name: string;
-    power: 9;
+    power: number;
     trophies: number;
 }
 
