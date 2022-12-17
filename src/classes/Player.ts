@@ -1,6 +1,6 @@
 import { IPlayer } from "../interfaces";
 
-interface Brawler {
+export interface Brawler {
     rank: number;
     trophies: number;
     highestTrophies: number;
