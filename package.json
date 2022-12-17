@@ -14,7 +14,7 @@
         "brawlstars",
         "brawlstars-api"
     ],
-    "author": "alladon",
+    "author": "awekrx",
     "license": "MIT",
     "dependencies": {
         "axios": "^1.2.1"
