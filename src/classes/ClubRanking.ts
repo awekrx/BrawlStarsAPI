@@ -1,6 +1,6 @@
 import { IRankingClub } from "../interfaces";
 
-interface RankingClub {
+export interface RankingClub {
     tag: string;
     name: string;
     trophies: number;

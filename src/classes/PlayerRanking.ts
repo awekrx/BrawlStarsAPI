@@ -1,6 +1,6 @@
 import { IRankingPlayer } from "../interfaces";
 
-interface RankingPlayer {
+export interface RankingPlayer {
     tag: string;
     name: string;
     trophies: number;
