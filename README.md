@@ -7,7 +7,7 @@ brawlstars-api-nodejs is a NodeJS library for that is a client for the Brawl Sta
 Use the package manager [npm](https://www.npmjs.com/package/brawlstars-api-nodejs) to install brawlstars-api-nodejs.
 
 ```bash
-pip install foobar
+npm install brawlstars-api-nodejs
 ```
 
 ## Usage
