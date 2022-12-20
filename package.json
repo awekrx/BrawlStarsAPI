@@ -1,6 +1,6 @@
 {
     "name": "brawlstars-api-nodejs",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "brawlstars-api-nodejs is a NodeJS library for that is a client for the Brawl Stars API.",
     "main": "index.js",
     "scripts": {
@@ -8,7 +8,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/alladon/brawlstars-api-nodejs.git"
+        "url": "git+https://github.com/awekrx/brawlstars-api-nodejs.git"
     },
     "keywords": [
         "brawlstars",
@@ -20,10 +20,11 @@
         "axios": "^1.2.1"
     },
     "bugs": {
-        "url": "https://github.com/alladon/brawlstars-api-nodejs/issues"
+        "url": "https://github.com/awekrx/brawlstars-api-nodejs/issues"
     },
-    "homepage": "https://github.com/alladon/brawlstars-api-nodejs/#readme",
+    "homepage": "https://github.com/awekrx/brawlstars-api-nodejs/#readme",
     "files": [
-        "lib/**/*"
+        "lib/**/*",
+        "index.d.ts"
     ]
 }
