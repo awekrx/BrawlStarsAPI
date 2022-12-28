@@ -1,6 +1,6 @@
 # brawlstars-api-nodejs
 
-brawlstars-api-nodejs is a NodeJS library for that is a client for the Brawl Stars API.
+brawlstars-api-nodejs is a NodeJS library for that is a wrapper for the Brawl Stars API.
 
 ## Installation
 
