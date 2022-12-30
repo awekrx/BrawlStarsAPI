@@ -1,14 +1,15 @@
 {
     "name": "brawlstars-api-nodejs",
-    "version": "1.0.5",
-    "description": "brawlstars-api-nodejs is a NodeJS library for that is a client for the Brawl Stars API.",
-    "main": "index.js",
+    "version": "1.2.0",
+    "description": "brawlstars-api-nodejs is a NodeJS library for that is a wrapper/client for the Brawl Stars API.",
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
     "scripts": {
         "build": "tsc"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/awekrx/brawlstars-api-nodejs.git"
+        "url": "git+https://github.com/awekrx/BrawlStarsAPI.git"
     },
     "keywords": [
         "brawlstars",
@@ -20,11 +21,13 @@
         "axios": "^1.2.1"
     },
     "bugs": {
-        "url": "https://github.com/awekrx/brawlstars-api-nodejs/issues"
+        "url": "https://github.com/awekrx/BrawlStarsAPI/issues"
     },
-    "homepage": "https://github.com/awekrx/brawlstars-api-nodejs/#readme",
+    "homepage": "https://github.com/awekrx/BrawlStarsAPI/#readme",
     "files": [
-        "lib/**/*",
-        "index.d.ts"
-    ]
+        "lib/**/*"
+    ],
+    "devDependencies": {
+        "@types/node": "^18.11.18"
+    }
 }
