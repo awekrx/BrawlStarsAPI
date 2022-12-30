@@ -1,5 +1,5 @@
-import BrawlStarsClient from "./classes/BrawlStarsClient";
-import BrawlStarsApi from "./classes/BrawlStarsApi";
+import BrawlStarsClient from "./_classes/BrawlStarsClient";
+import BrawlStarsApi from "./_classes/BrawlStarsApi";
 import {
     IBattle,
     IBattlePlayer,
@@ -17,12 +17,12 @@ import {
     TClubType,
     TCountry,
     TMode,
-} from "./interfaces";
-import CBattleLog, { Battle as CBattle } from "./classes/BattleLog";
-import CClub, { Member as CMember } from "./classes/Club";
-import CClubRanking, { RankingClub as CRankingClub } from "./classes/ClubRanking";
-import CPlayer, { Brawler as CBrawler } from "./classes/Player";
-import CPlayerRanking, { RankingPlayer as CRankingPlayer } from "./classes/PlayerRanking";
+} from "./_interfaces/interfaces";
+import CBattleLog, { Battle as CBattle } from "./_classes/BattleLog";
+import CClub, { Member as CMember } from "./_classes/Club";
+import CClubRanking, { RankingClub as CRankingClub } from "./_classes/ClubRanking";
+import CPlayer, { Brawler as CBrawler } from "./_classes/Player";
+import CPlayerRanking, { RankingPlayer as CRankingPlayer } from "./_classes/PlayerRanking";
 
 export interface APIBattle extends IBattle {}
 export interface APIBattlePlayer extends IBattlePlayer {}
@@ -53,7 +53,10 @@ export class ClubRanking extends CClubRanking {}
 export class Player extends CPlayer {}
 export class PlayerRanking extends CPlayerRanking {}
 
+export class Client extends BrawlStarsClient {}
+export class API extends BrawlStarsApi {}
+
 export default {
-    client: BrawlStarsClient,
-    api: BrawlStarsApi,
+    client: Client,
+    api: API,
 };
