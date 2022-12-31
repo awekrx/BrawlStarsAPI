@@ -1,38 +1,19 @@
-import { IRankingPlayer } from "../_interfaces/interfaces";
+import { APIRankingPlayer } from "../_interfaces/interfaces";
 
 /**
- * Represents a player in the ranking list.
- * @interface RankingPlayer
+ * Represents a player in the game ranking.
+ * @interface
+ * @property {string} tag - The player's tag.
+ * @property {string} name - The player's name.
+ * @property {number} trophies - The number of trophies earned by the player.
+ * @property {number} rank - The player's current ranking.
+ * @property {string} club - The name of the club that the player belongs to (optional).
  */
 export interface RankingPlayer {
-    /**
-     * The player's tag.
-     * @type {string}
-     */
     tag: string;
-
-    /**
-     * The player's name.
-     * @type {string}
-     */
     name: string;
-
-    /**
-     * The player's number of trophies.
-     * @type {number}
-     */
     trophies: number;
-
-    /**
-     * The player's rank.
-     * @type {number}
-     */
     rank: number;
-
-    /**
-     * The name of the player's club, if they belong to one.
-     * @type {(string | undefined)}
-     */
     club?: string;
 }
 
@@ -49,10 +30,10 @@ export default class PlayerRanking {
 
     /**
      * Creates a new `PlayerRanking` instance from an API response.
-     * @param {IRankingPlayer[]} api The API response containing player ranking data.
+     * @param {APIRankingPlayer[]} api The API response containing player ranking data.
      * @constructor
      */
-    constructor(api: IRankingPlayer[]) {
+    constructor(api: APIRankingPlayer[]) {
         for (let i = 0; i < api.length; i++) {
             this.ranking.push({
                 tag: api[i].tag,

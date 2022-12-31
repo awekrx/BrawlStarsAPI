@@ -1,30 +1,19 @@
-import { IClub, TClubMemberRole, TClubType } from "../_interfaces/interfaces";
+import { APIClub, ClubMemberRole, ClubType } from "../_interfaces/interfaces";
 
 /**
- * Represents a member in a club.
+ * Represents a member of a club in the game.
  * @interface
+ * @property {string} tag - The player's tag, formatted as "#2R20PL0UR".
+ * @property {string} name - The player's in-game name.
+ * @property {number} trophies - The number of trophies earned by the player.
+ * @property {ClubMemberRole} role - The role of the player in the club.
  */
+
 export interface Member {
-    /**
-     * The member's tag.
-     * @type {string}
-     */
     tag: string;
-    /**
-     * The member's name.
-     * @type {string}
-     */
     name: string;
-    /**
-     * The member's trophies.
-     * @type {number}
-     */
     trophies: number;
-    /**
-     * The member's role in the club.
-     * @type {TClubMemberRole}
-     */
-    role: TClubMemberRole;
+    role: ClubMemberRole;
 }
 
 /**
@@ -49,9 +38,9 @@ export default class Club {
     public description: string;
     /**
      * The club's type.
-     * @type {TClubType}
+     * @type {ClubType}
      */
-    public type: TClubType;
+    public type: ClubType;
     /**
      * The club's current number of trophies.
      * @type {number}
@@ -80,10 +69,10 @@ export default class Club {
 
     /**
      * Creates a new Club instance.
-     * @param {IClub} api The club data returned by the API.
+     * @param {APIClub} api The club data returned by the API.
      * @constructor
      */
-    constructor(api: IClub) {
+    constructor(api: APIClub) {
         this.tag = api.tag;
         this.name = api.name;
         this.description = api.description;
@@ -128,10 +117,10 @@ export default class Club {
 
     /**
      * Returns an array of all the members in the club with a specific role.
-     * @param {TClubMemberRole} role The role to filter by.
+     * @param {ClubMemberRole} role The role to filter by.
      * @returns {Member[]}
      */
-    public getRoleMembers(role: TClubMemberRole): Member[] {
+    public getRoleMembers(role: ClubMemberRole): Member[] {
         return this.members.filter((member) => member.role == role);
     }
 }

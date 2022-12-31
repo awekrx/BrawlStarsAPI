@@ -1,43 +1,23 @@
-import { IPlayer } from "../_interfaces/interfaces";
+import { APIPlayer } from "../_interfaces/interfaces";
 
 /**
- * Represents a player's brawler in the game.
+ * Represents a brawler in the game.
+ * @interface
+ * @property {number} rank - The rank of the brawler.
+ * @property {number} trophies - The number of trophies earned by the brawler.
+ * @property {number} highestTrophies - The highest number of trophies earned by the brawler.
+ * @property {number} power - The power level of the brawler.
+ * @property {number} countStarPowers - The number of star powers owned by the brawler.
+ * @property {number} countGadgets - The number of gadgets owned by the brawler.
+ * @property {number} countGears - The number of gears owned by the brawler.
  */
 export interface Brawler {
-    /**
-     * The brawler's rank.
-     * @type {number}
-     */
     rank: number;
-    /**
-     * The brawler's current number of trophies.
-     * @type {number}
-     */
     trophies: number;
-    /**
-     * The brawler's highest number of trophies achieved.
-     * @type {number}
-     */
     highestTrophies: number;
-    /**
-     * The brawler's power level.
-     * @type {number}
-     */
     power: number;
-    /**
-     * The number of star powers the brawler has.
-     * @type {number}
-     */
     countStarPowers: number;
-    /**
-     * The number of gadgets the brawler has.
-     * @type {number}
-     */
     countGadgets: number;
-    /**
-     * The number of gears the brawler has.
-     * @type {number}
-     */
     countGears: number;
 }
 
@@ -91,10 +71,10 @@ export default class Player {
 
     /**
      * Creates a new `Player` instance from an API response.
-     * @param {IPlayer} api The API response containing player data.
+     * @param {APIPlayer} api The API response containing player data.
      * @constructor
      */
-    constructor(api: IPlayer) {
+    constructor(api: APIPlayer) {
         this.tag = api.tag;
         this.name = api.name;
         this.trophies = api.trophies;

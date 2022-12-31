@@ -1,4 +1,7 @@
-export type TCountry =
+/**
+ * Represents a country code.
+ */
+export type Country =
     | "global"
     | "af"
     | "ax"
@@ -245,7 +248,10 @@ export type TCountry =
     | "zm"
     | "zw";
 
-export type TMode =
+/**
+ * Represents the different types of game modes in the game.
+ */
+export type Mode =
     | "soloShowdown"
     | "duoShowdown"
     | "heist"
@@ -277,17 +283,32 @@ export type TMode =
  * Represents the type of a battle.
  * @type {'soloRanked' | 'teamRanked' | 'ranked'}
  */
-export type TBattleType = "soloRanked" | "teamRanked" | "ranked";
-export type TBattleResult = "victory" | "defeat" | "draw";
-export type TClubMemberRole = "notMember" | "member" | "president" | "senior" | "vicePresident" | "unknown";
-export type TClubType = "open" | "inviteOnly" | "closed" | "unknown";
+export type BattleType = "soloRanked" | "teamRanked" | "ranked";
+/**
+ * Represents the result of a battle.
+ * @type {BattleResult}
+ */
+export type BattleResult = "victory" | "defeat" | "draw";
+/**
+ * Represents the role of a member in a club.
+ * @type {ClubMemberRole}
+ */
+export type ClubMemberRole = "notMember" | "member" | "president" | "senior" | "vicePresident" | "unknown";
+/**
+ * Represents the type of a club.
+ * @type {ClubType}
+ */
+export type ClubType = "open" | "inviteOnly" | "closed" | "unknown";
 
 /**
- * Represents a player in a battle.
+ * Represents a brawler in a battle.
  * @interface
+ * @property {number} id - The ID of the brawler.
+ * @property {string} name - The name of the brawler.
+ * @property {number} power - The power level of the brawler.
+ * @property {number} trophies - The number of trophies earned by the brawler.
  */
-
-interface IBattleBrawler {
+interface APIBattleBrawler {
     id: number;
     name: string;
     power: number;
@@ -302,10 +323,10 @@ interface IBattleBrawler {
  * @property {number} power - The power level of the brawler.
  * @property {number} trophies - The number of trophies earned by the brawler.
  */
-export interface IBattlePlayer {
+export interface APIBattlePlayer {
     tag: string;
     name: string;
-    brawler: IBattleBrawler;
+    brawler: APIBattleBrawler;
 }
 
 /**
@@ -318,41 +339,41 @@ export interface IBattlePlayer {
  * @property {string} event.map - The map on which the battle took place.
  * @property {object} battle - Information about the battle itself.
  * @property {TMode} battle.mode - The mode of the battle.
- * @property {TBattleType} battle.type - The type of the battle.
- * @property {TBattleResult} [battle.result] - The result of the battle (optional).
+ * @property {BattleType} battle.type - The type of the battle.
+ * @property {BattleResult} [battle.result] - The result of the battle (optional).
  * @property {number} [battle.duration] - The duration of the battle in seconds (optional).
  * @property {number} [battle.rank] - The rank of the battle (optional).
  * @property {number} [battle.trophyChange] - The change in trophies after the battle (optional).
- * @property {null|IBattlePlayer} starPlayer - The star player of the battle, or null if none was designated.
- * @property {Array<IBattlePlayer[]>} teams - An array of teams, each containing an array of players.
+ * @property {null|APIBattlePlayer} starPlayer - The star player of the battle, or null if none was designated.
+ * @property {Array<APIBattlePlayer[]>} teams - An array of teams, each containing an array of players.
  */
-export interface IBattle {
+export interface APIBattle {
     [key: string]: any;
     battleTime: string;
     event: {
         id: number;
-        mode: TMode;
+        mode: Mode;
         map: string;
     };
     battle: {
-        mode: TMode;
-        type: TBattleType;
-        result?: TBattleResult;
+        mode: Mode;
+        type: BattleType;
+        result?: BattleResult;
         duration?: number;
         rank?: number;
         trophyChange?: number;
-        starPlayer: null | IBattlePlayer;
+        starPlayer: null | APIBattlePlayer;
         teams: [
-            IBattlePlayer[],
-            IBattlePlayer[],
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
-            IBattlePlayer[]?,
+            APIBattlePlayer[],
+            APIBattlePlayer[],
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
+            APIBattlePlayer[]?,
         ];
     };
 }
@@ -365,7 +386,7 @@ export interface IBattle {
  * @property {Array<{id: number, name: string}>} starPowers - An array of star powers available to the brawler.
  * @property {Array<{id: number, name: string}>} gadgets - An array of gadgets available to the brawler.
  */
-export interface IBrawler {
+export interface APIBrawler {
     id: number;
     name: string;
     starPowers: { id: number; name: string }[];
@@ -386,7 +407,7 @@ export interface IBrawler {
  * @property {Array<{id: number, name: string}>} gadgets - An array of gadgets available to the brawler.
  */
 
-interface IPlayerBrawler {
+interface APIPlayerBrawler {
     id: number;
     name: string;
     power: number;
@@ -419,9 +440,9 @@ interface IPlayerBrawler {
  * @property {object} club - The club to which the player belongs.
  * @property {string} club.tag - The unique tag of the club.
  * @property {string} club.name - The name of the club.
- * @property {Array<IPlayerBrawler>} brawlers - An array of brawlers owned by the player.
+ * @property {Array<APIPlayerBrawler>} brawlers - An array of brawlers owned by the player.
  */
-export interface IPlayer {
+export interface APIPlayer {
     tag: string;
     name: string;
     nameColor: string;
@@ -437,7 +458,7 @@ export interface IPlayer {
     bestRoboRumbleTime: number;
     bestTimeAsBigBrawler: number;
     club: { tag: string; name: string };
-    brawlers: IPlayerBrawler[];
+    brawlers: APIPlayerBrawler[];
 }
 
 /**
@@ -446,16 +467,16 @@ export interface IPlayer {
  * @property {string} tag - The unique tag of the member.
  * @property {string} name - The name of the member.
  * @property {string} nameColor - The color of the member's name.
- * @property {TClubMemberRole} role - The role of the member in the club.
+ * @property {ClubMemberRole} role - The role of the member in the club.
  * @property {number} trophies - The number of trophies earned by the member.
  * @property {object} icon - The icon of the member.
  * @property {number} icon.id - The ID of the member's icon.
  */
-export interface IClubMember {
+export interface APIClubMember {
     tag: string;
     name: string;
     nameColor: string;
-    role: TClubMemberRole;
+    role: ClubMemberRole;
     trophies: number;
     icon: { id: number };
 }
@@ -466,21 +487,21 @@ export interface IClubMember {
  * @property {string} tag - The unique tag of the club.
  * @property {string} name - The name of the club.
  * @property {string} description - The description of the club.
- * @property {TClubType} type - The type of the club.
+ * @property {ClubType} type - The type of the club.
  * @property {number} badgeId - The ID of the club's badge.
  * @property {number} requiredTrophies - The number of trophies required to join the club.
  * @property {number} trophies - The number of trophies earned by the club.
- * @property {Array<IClubMember>} members - An array of members in the club.
+ * @property {Array<APIClubMember>} members - An array of members in the club.
  */
-export interface IClub {
+export interface APIClub {
     tag: string;
     name: string;
     description: string;
-    type: TClubType;
+    type: ClubType;
     badgeId: number;
     requiredTrophies: number;
     trophies: number;
-    members: IClubMember[];
+    members: APIClubMember[];
 }
 
 /**
@@ -496,7 +517,7 @@ export interface IClub {
  * @property {object} club - The club that the player is a member of.
  * @property {string} club.name - The name of the club.
  */
-export interface IRankingPlayer {
+export interface APIRankingPlayer {
     tag: string;
     name: string;
     nameColor: string;
@@ -513,7 +534,7 @@ export interface IRankingPlayer {
  * @property {string} startTime - The start time of the league.
  * @property {string} endTime - The end time of the league.
  */
-export interface IPowerPlayLeague {
+export interface APIPowerPlayLeague {
     id: string;
     startTime: string;
     endTime: string;
@@ -529,7 +550,7 @@ export interface IPowerPlayLeague {
  * @property {number} rank - The ranking of the club.
  * @property {number} memberCount - The number of members in the club.
  */
-export interface IRankingClub {
+export interface APIRankingClub {
     tag: string;
     name: string;
     badgeId: number;
@@ -549,13 +570,13 @@ export interface IRankingClub {
  * @property {TMode} event.mode - The mode of the event.
  * @property {string} event.map - The name of the map.
  */
-export interface IMap {
+export interface APIMap {
     startTime: string;
     endTime: string;
     slotId: number;
     event: {
         id: number;
-        mode: TMode;
+        mode: Mode;
         map: string;
     };
 }

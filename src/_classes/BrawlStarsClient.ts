@@ -1,6 +1,6 @@
-import { IBrawler, IMap, IPowerPlayLeague, TCountry } from "../_interfaces/interfaces";
+import { APIBrawler, APIMap, APIPowerPlayLeague, Country } from "../_interfaces/interfaces";
 import BattleLog from "./BattleLog";
-import BrawlStarsApi from "./BrawlStarsApi";
+import API from "./BrawlStarsApi";
 import Club, { Member } from "./Club";
 import ClubRanking from "./ClubRanking";
 import Player from "./Player";
@@ -10,13 +10,13 @@ import PlayerRanking from "./PlayerRanking";
  * Class that represents a client for the Brawl Stars API
  * @class
  */
-export default class BrawlStarsClient {
+export default class Client {
     /**
      * The instance of the BrawlStarsApi class.
-     * @type {BrawlStarsApi}
+     * @type {API}
      * @private
      */
-    private api: BrawlStarsApi;
+    private api: API;
 
     /**
      * Creates a new instance of the Client class.
@@ -24,7 +24,7 @@ export default class BrawlStarsClient {
      * @constructor
      */
     constructor(token: string) {
-        this.api = new BrawlStarsApi(token);
+        this.api = new API(token);
     }
 
     /**
@@ -74,36 +74,36 @@ export default class BrawlStarsClient {
 
     /**
      * Returns a list of all brawlers in the game.
-     * @returns {Promise<IBrawler[]>} A promise that resolves to an array of brawlers.
+     * @returns {Promise<APIBrawler[]>} A promise that resolves to an array of brawlers.
      */
-    public async brawlers(): Promise<IBrawler[]> {
+    public async brawlers(): Promise<APIBrawler[]> {
         return await this.api.brawlers();
     }
 
     /**
      * Retrieve information about a specific brawler
      * @param {number} id - The id brawler
-     * @returns {Promise<IBrawler>} A promise that resolves to an object containing information about the brawler
+     * @returns {Promise<APIBrawler>} A promise that resolves to an object containing information about the brawler
      */
-    public async brawler(id: number | string): Promise<IBrawler> {
+    public async brawler(id: number | string): Promise<APIBrawler> {
         return await this.api.brawler(id);
     }
 
     /**
      * Returns an array of seasons for the specified country's Power Play ranking.
-     * @param {TCountry} [counrty="global"] - counrty The country to get the Power Play ranking seasons for. Defaults to 'global'.
-     * @returns {Promise<IPowerPlayLeague[]>} An array of seasons for the specified country's Power Play ranking.
+     * @param {Country} [counrty="global"] - counrty The country to get the Power Play ranking seasons for. Defaults to 'global'.
+     * @returns {Promise<APIPowerPlayLeague[]>} An array of seasons for the specified country's Power Play ranking.
      */
-    public async powerPlayRankingSeasons(counrty: TCountry = "global"): Promise<IPowerPlayLeague[]> {
+    public async powerPlayRankingSeasons(counrty: Country = "global"): Promise<APIPowerPlayLeague[]> {
         return this.api.powerPlayRankingSeasons(counrty);
     }
 
     /**
      * Get the trophy ranking for a specific country.
-     * @param {TCountry} [counrty="global"] - counrty The country to get the ranking for. Defaults to "global".
+     * @param {Country} [counrty="global"] - counrty The country to get the ranking for. Defaults to "global".
      * @returns {Promise<IRankingPlayer[]>} An array of players ranked by their trophies.
      */
-    public async trophyRanking(counrty: TCountry = "global"): Promise<PlayerRanking> {
+    public async trophyRanking(counrty: Country = "global"): Promise<PlayerRanking> {
         let api = await this.api.trophyRanking(counrty);
         let client = new PlayerRanking(api);
 
@@ -113,13 +113,10 @@ export default class BrawlStarsClient {
     /**
      * Get the power play ranking for a specific country and season.
      * @param {(number | "latest")} id The ID of the season. Defaults to "latest".
-     * @param {TCountry} [counrty="global"] - counrty The country to get the ranking for. Defaults to "global".
+     * @param {Country} [counrty="global"] - counrty The country to get the ranking for. Defaults to "global".
      * @returns {Promise<IRankingPlayer[]>} An array of players ranked by their power play points.
      */
-    public async powerPlayRanking(
-        id: string | number = "latest",
-        counrty: TCountry = "global",
-    ): Promise<PlayerRanking> {
+    public async powerPlayRanking(id: string | number = "latest", counrty: Country = "global"): Promise<PlayerRanking> {
         let api = await this.api.powerPlayRanking(id, counrty);
         let client = new PlayerRanking(api);
 
@@ -128,10 +125,10 @@ export default class BrawlStarsClient {
 
     /**
      * @param {number | string} id - The brawler ID or name.
-     * @param {TCountry} [counrty="global"] - The country code.
+     * @param {Country} [counrty="global"] - The country code.
      * @returns {Promise<PlayerRanking>} A promise that resolves with the player ranking object.
      */
-    public async brawlerRanking(id: string | number, counrty: TCountry = "global"): Promise<PlayerRanking> {
+    public async brawlerRanking(id: string | number, counrty: Country = "global"): Promise<PlayerRanking> {
         let api = await this.api.brawlerRanking(id, counrty);
         let client = new PlayerRanking(api);
 
@@ -140,10 +137,10 @@ export default class BrawlStarsClient {
 
     /**
      * Returns the club ranking for the specified country.
-     * @param {TCountry} [counrty="global"] The country to get the ranking for.
+     * @param {Country} [counrty="global"] The country to get the ranking for.
      * @returns {Promise<ClubRanking>} A promise that resolves to the club ranking.
      */
-    public async clubRanking(counrty: TCountry = "global"): Promise<ClubRanking> {
+    public async clubRanking(counrty: Country = "global"): Promise<ClubRanking> {
         let api = await this.api.clubRanking(counrty);
         let client = new ClubRanking(api);
 
@@ -152,9 +149,9 @@ export default class BrawlStarsClient {
 
     /**
      * Returns the current rotation of maps in the game.
-     * @returns {Promise<IMap>} The current rotation of maps.
+     * @returns {Promise<APIMap>} The current rotation of maps.
      */
-    public async rotation(): Promise<IMap> {
+    public async rotation(): Promise<APIMap> {
         return this.api.rotation();
     }
 }

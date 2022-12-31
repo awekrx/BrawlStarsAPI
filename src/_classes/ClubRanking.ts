@@ -1,38 +1,19 @@
-import { IRankingClub } from "../_interfaces/interfaces";
+import { APIRankingClub } from "../_interfaces/interfaces";
 
 /**
- * Represents a club in the ranking list.
- * @interface RankingClub
+ * Represents a club in the game.
+ * @interface
+ * @property {string} tag - The tag of the club.
+ * @property {string} name - The name of the club.
+ * @property {number} trophies - The number of trophies earned by the club.
+ * @property {number} rank - The rank of the club.
+ * @property {number} memberCount - The number of members in the club.
  */
 export interface RankingClub {
-    /**
-     * The club's tag.
-     * @type {string}
-     */
     tag: string;
-
-    /**
-     * The club's name.
-     * @type {string}
-     */
     name: string;
-
-    /**
-     * The club's number of trophies.
-     * @type {number}
-     */
     trophies: number;
-
-    /**
-     * The club's rank.
-     * @type {number}
-     */
     rank: number;
-
-    /**
-     * The number of members in the club.
-     * @type {number}
-     */
     memberCount: number;
 }
 
@@ -50,10 +31,10 @@ export default class ClubRanking {
 
     /**
      * Creates an instance of ClubRanking.
-     * @param {IRankingClub[]} api - The list of ranked clubs from the API.
+     * @param {APIRankingClub[]} api - The list of ranked clubs from the API.
      * @constructor
      */
-    constructor(api: IRankingClub[]) {
+    constructor(api: APIRankingClub[]) {
         for (let i = 0; i < api.length; i++) {
             this.ranking.push({
                 tag: api[i].tag,

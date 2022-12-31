@@ -1,6 +1,16 @@
-import { IBattle, IBattlePlayer, TBattleResult, TBattleType, TMode } from "../_interfaces/interfaces";
+import { APIBattle, APIBattlePlayer, BattleResult, BattleType, Mode } from "../_interfaces/interfaces";
 
-interface starPlayer {
+/**
+ * Represents a star player in a battle.
+ * @interface
+ * @property {string} tag - The player's tag.
+ * @property {string} name - The player's in-game name.
+ * @property {Object} brawler - An object containing information about the player's selected brawler.
+ * @property {string} brawler.name - The name of the brawler.
+ * @property {number} brawler.power - The power level of the brawler.
+ * @property {number} brawler.trophies - The number of trophies earned by the brawler.
+ */
+export interface StarPlayer {
     tag: string;
     name: string;
     brawler: { name: string; power: number; trophies: number };
@@ -18,9 +28,9 @@ export class Battle {
     public time: string;
     /**
      * The mode in which the battle was played.
-     * @type {TMode}
+     * @type {Mode}
      */
-    public mode: TMode;
+    public mode: Mode;
     /**
      * The map on which the battle was played.
      * @type {string}
@@ -28,14 +38,14 @@ export class Battle {
     public map: string;
     /**
      * The type of battle.
-     * @type {TBattleType}
+     * @type {BattleType}
      */
-    public type: TBattleType;
+    public type: BattleType;
     /**
      * The result of the battle.
-     * @type {TBattleResult}
+     * @type {BattleResult}
      */
-    public result?: TBattleResult;
+    public result?: BattleResult;
     /**
      * The duration of the battle in seconds.
      * @type {number}
@@ -53,32 +63,32 @@ export class Battle {
     public trophyChange?: number;
     /**
      * The star player of the battle.
-     * @type {null | starPlayer}
+     * @type {null | StarPlayer}
      */
-    public starPlayer: null | starPlayer;
+    public starPlayer: null | StarPlayer;
     /**
      * The teams that participated in the battle.
-     * @type {[IBattlePlayer[], IBattlePlayer[], IBattlePlayer[]?, IBattlePlayer[]?, IBattlePlayer[]?, IBattlePlayer[]?, IBattlePlayer[]?, IBattlePlayer[]?, IBattlePlayer[]?, IBattlePlayer[]?]}
+     * @type {[APIBattlePlayer[], APIBattlePlayer[], APIBattlePlayer[]?, APIBattlePlayer[]?, APIBattlePlayer[]?, APIBattlePlayer[]?, APIBattlePlayer[]?, APIBattlePlayer[]?, APIBattlePlayer[]?, APIBattlePlayer[]?]}
      */
     public teams: [
-        IBattlePlayer[],
-        IBattlePlayer[],
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
-        IBattlePlayer[]?,
+        APIBattlePlayer[],
+        APIBattlePlayer[],
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
+        APIBattlePlayer[]?,
     ];
 
     /**
      * Creates a new Battle instance.
-     * @param {IBattle} api The battle data returned by the API.
+     * @param {APIBattle} api The battle data returned by the API.
      * @constructor
      */
-    constructor(api: IBattle) {
+    constructor(api: APIBattle) {
         this.time = api.battleTime;
         api.event.mode ? (this.mode = api.event.mode) : (this.mode = "unknown");
         api.event.map ? (this.map = api.event.map) : (this.map = "Community map");
@@ -145,10 +155,10 @@ export default class BattleLog {
 
     /**
      * Creates a new BattleLog instance.
-     * @param {IBattle[]} api The battle log data returned by the API.
+     * @param {APIBattle[]} api The battle log data returned by the API.
      * @constructor
      */
-    constructor(api: IBattle[]) {
+    constructor(api: APIBattle[]) {
         for (let i = 0; i < api.length; i++) {
             this.history.push(new Battle(api[i]));
         }
