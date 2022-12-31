@@ -29,7 +29,7 @@ async function main() {
 main();
 ```
 
-[More examples]("/examples")
+[More examples](examples)
 
 ## Documentation
 
